@@ -1,0 +1,79 @@
+# Python-generated files
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+build/
+develop-eggs/
+dist/
+downloads/
+eggs/
+.eggs/
+lib/
+lib64/
+parts/
+sdist/
+var/
+wheels/
+share/python-wheels/
+*.egg-info/
+.installed.cfg
+*.egg
+MANIFEST
+
+# Virtual environments
+.venv/
+venv/
+ENV/
+env/
+.ENV/
+
+# Environment variables
+.env
+.env.local
+.env.*.local
+
+# Logs
+*.log
+logs/
+
+# IDE
+.idea/
+.vscode/
+*.code-workspace
+
+# OS files
+.DS_Store
+Thumbs.db
+*.swp
+*.swo
+
+# Temporary files
+*.tmp
+*.temp
+*.bak
+
+# Test coverage
+.coverage
+.pytest_cache/
+.tox/
+
+# MyPy
+.mypy_cache/
+
+# UV lock file (optional - some teams commit this)
+# uv.lock
+
+# PaddleOCR cache directories
+.paddleocr/
+.paddlex/
+
+# Test data (uncomment if you don't want to commit test images)
+# src/test_data/
+
+# Google Cloud credentials - NEVER commit these!
+*-*.json
+aprtgs-*.json
+*service-account*.json
+*credentials*.json

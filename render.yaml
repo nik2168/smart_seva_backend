@@ -1,0 +1,44 @@
+services:
+  - type: web
+    name: smart-seva-api
+    env: python
+    region: oregon  # Choose your preferred region
+    plan: starter  # Options: free, starter, standard, pro
+    buildCommand: |
+      curl -LsSf https://astral.sh/uv/install.sh | sh
+      export PATH="$HOME/.cargo/bin:$PATH"
+      uv sync
+    startCommand: uv run uvicorn src.api.main:app --host 0.0.0.0 --port $PORT
+    envVars:
+      - key: PYTHON_VERSION
+        value: 3.13.0
+      # PORT is automatically provided by Render, no need to set it manually
+      # LLM Provider Configuration
+      - key: LLM_PROVIDER
+        value: groq  # Use groq for production (ollama won't work on Render)
+      # Groq API Configuration (set these in Render dashboard)
+      # - key: GROQ_API_KEY
+      #   sync: false  # Set manually in Render dashboard
+      # - key: GROQ_MODEL
+      #   value: llama-3.1-70b-versatile
+      # OCR Configuration
+      - key: OCR_PROVIDER
+        value: easyocr
+      - key: OCR_LANGUAGES
+        value: '["en", "te"]'
+      - key: OCR_GPU
+        value: "false"  # Render free/starter plans don't have GPU
+      - key: OCR_LIGHTWEIGHT
+        value: "true"
+      - key: OCR_MAX_IMAGE_DIMENSION
+        value: "2000"
+      - key: OCR_MIN_CONFIDENCE
+        value: "0.5"
+      - key: OCR_BI_LANG
+        value: "false"
+      # Google Vision API (set in Render dashboard as environment variable)
+      # - key: GOOGLE_VISION_API_KEY
+      #   sync: false  # Set manually in Render dashboard
+      # Logging
+      - key: LOG_LEVEL
+        value: INFO
