@@ -6,8 +6,10 @@ readme = "README.md"
 requires-python = ">=3.13"
 dependencies = [
     "dspy-ai>=3.0.4",
-    "easyocr>=1.7.2",
-    "opencv-python>=4.8.0", # Required by easyocr for cv2
+    # Removed GPU-heavy OCR packages for Render free tier deployment
+    # Using only Google Cloud Vision API for OCR (set via OCR_PROVIDER=google_vision)
+    # "easyocr>=1.7.2",  # Removed - pulls in torch + CUDA packages
+    # "opencv-python>=4.8.0",  # Removed - not needed for cloud OCR
     "langgraph>=1.0.4",
     "fastapi>=0.115.0",
     "uvicorn[standard]>=0.32.0",
@@ -17,10 +19,11 @@ dependencies = [
     "python-json-logger>=3.2.1", # Structured logging
     "pdf2image>=1.17.0",
     "pillow>=10.0.0", # For image processing
-    "paddlepaddle>=3.2.2",
-    "paddleocr>=3.3.2",
-    "paddlex[ocr]>=3.3.10", # Required for PaddleOCR-VL
-    "google-cloud-vision>=3.8.0", # Google Cloud Vision API for cloud OCR
+    # Removed PaddleOCR packages - too large for free tier
+    # "paddlepaddle>=3.2.2",  # Removed - pulls in CUDA packages
+    # "paddleocr>=3.3.2",  # Removed
+    # "paddlex[ocr]>=3.3.10",  # Removed
+    "google-cloud-vision>=3.8.0", # Google Cloud Vision API for cloud OCR (only OCR provider)
 ]
 
 [build-system]
